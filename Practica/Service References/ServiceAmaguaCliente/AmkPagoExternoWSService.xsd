@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:ns0="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/" targetNamespace="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:complexType name="anularPago">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element name="codigoPago" type="xsd:int" />
+      <xsd:element minOccurs="0" name="motivo" type="xsd:string" />
+      <xsd:element minOccurs="0" name="codTrans" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="anularPagoResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:pagoCabeceraRes" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="arqueoPagos">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element minOccurs="0" name="arqueoEntrada" type="ns0:arqueoInputType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="arqueoPagosResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:arqueoRespuesta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultaInfoCliente">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element name="inmCodigo" type="xsd:int" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultaInfoClienteResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:inmuebleRespuesta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultaPagos">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element minOccurs="0" name="arqueoEntrada" type="ns0:arqueoInputType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultaPagosResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:pagoRespuesta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultarSaldo">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element name="inmCodigo" type="xsd:int" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="consultarSaldoResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:saldoRespuesta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="registrarPago">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Usuario" type="xsd:string" />
+      <xsd:element minOccurs="0" name="Password" type="xsd:string" />
+      <xsd:element minOccurs="0" name="pagoEntrada" type="ns0:pagoInputType" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="registrarPagoResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="ns0:pagoRespuesta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagoCabeceraRes">
+    <xsd:sequence>
+      <xsd:element name="codigoRespuesta" type="xsd:int" />
+      <xsd:element minOccurs="0" name="idSesion" type="xsd:string" />
+      <xsd:element minOccurs="0" name="mensajeRespuesta" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="arqueoInputType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="fechaFinal" type="xsd:string" />
+      <xsd:element minOccurs="0" name="fechaInicial" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="arqueoRespuesta">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cabecera" type="ns0:pagoCabeceraRes" />
+      <xsd:element name="valorAnulado" type="xsd:double" />
+      <xsd:element name="valorAplicado" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inmuebleRespuesta">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cabecera" type="ns0:inmuebleCabeceraRes" />
+      <xsd:element minOccurs="0" name="inmueble" type="ns0:inmuebleConsulta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inmuebleCabeceraRes">
+    <xsd:sequence>
+      <xsd:element name="codigoRespuesta" type="xsd:int" />
+      <xsd:element minOccurs="0" name="idSesion" type="xsd:string" />
+      <xsd:element minOccurs="0" name="mensajeRespuesta" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="inmuebleConsulta">
+    <xsd:sequence>
+      <xsd:element name="codCliente" type="xsd:int" />
+      <xsd:element minOccurs="0" name="correo" type="xsd:string" />
+      <xsd:element minOccurs="0" name="direccion" type="xsd:string" />
+      <xsd:element minOccurs="0" name="direccionInmueble" type="xsd:string" />
+      <xsd:element minOccurs="0" name="docIdentificacion" type="xsd:string" />
+      <xsd:element name="inmCodigo" type="xsd:int" />
+      <xsd:element minOccurs="0" name="nombreCliente" type="xsd:string" />
+      <xsd:element minOccurs="0" name="telefono" type="xsd:string" />
+      <xsd:element minOccurs="0" name="tipoIdentificacion" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagoRespuesta">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cabecera" type="ns0:pagoCabeceraRes" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="pagos" nillable="true" type="ns0:pagoConsulta" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagoConsulta">
+    <xsd:sequence>
+      <xsd:element name="codigoPago" type="xsd:int" />
+      <xsd:element minOccurs="0" name="documento" type="xsd:decimal" />
+      <xsd:element minOccurs="0" name="fecha" type="xsd:dateTime" />
+      <xsd:element name="inmCodigo" type="xsd:int" />
+      <xsd:element name="valor" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="saldoRespuesta">
+    <xsd:sequence>
+      <xsd:element name="baseGravableTotal" type="xsd:double" />
+      <xsd:element name="baseNGMasSaldoCuotas" type="xsd:double" />
+      <xsd:element name="baseNoGravableTotal" type="xsd:double" />
+      <xsd:element minOccurs="0" name="cabecera" type="ns0:facturacionCabeceraRes" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="cuotasConvenio" nillable="true" type="ns0:cuotasConsulta" />
+      <xsd:element minOccurs="0" maxOccurs="unbounded" name="facturas" nillable="true" type="ns0:facturaConsulta" />
+      <xsd:element name="ivaTotal" type="xsd:double" />
+      <xsd:element name="saldoTotal" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="facturacionCabeceraRes">
+    <xsd:sequence>
+      <xsd:element name="codigoRespuesta" type="xsd:int" />
+      <xsd:element minOccurs="0" name="idSesion" type="xsd:string" />
+      <xsd:element minOccurs="0" name="mensajeRespuesta" type="xsd:string" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="cuotasConsulta">
+    <xsd:sequence>
+      <xsd:element name="interes" type="xsd:double" />
+      <xsd:element name="periodo" type="xsd:int" />
+      <xsd:element name="saldo" type="xsd:double" />
+      <xsd:element name="total" type="xsd:double" />
+      <xsd:element name="valorAplicado" type="xsd:double" />
+      <xsd:element name="valorAplicadoInteres" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="facturaConsulta">
+    <xsd:sequence>
+      <xsd:element name="baseGravable" type="xsd:double" />
+      <xsd:element name="baseNoGravable" type="xsd:double" />
+      <xsd:element name="consecutivo" type="xsd:int" />
+      <xsd:element name="documento" type="xsd:int" />
+      <xsd:element minOccurs="0" name="fechaVencimiento" type="xsd:dateTime" />
+      <xsd:element name="iva" type="xsd:double" />
+      <xsd:element name="pagado" type="xsd:double" />
+      <xsd:element name="periodo" type="xsd:int" />
+      <xsd:element name="saldo" type="xsd:double" />
+      <xsd:element name="total" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name="pagoInputType">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="codTrans" type="xsd:string" />
+      <xsd:element minOccurs="0" name="documento" type="xsd:decimal" />
+      <xsd:element name="inmCodigo" type="xsd:int" />
+      <xsd:element name="valor" type="xsd:double" />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="anularPago" type="ns0:anularPago" />
+  <xsd:element name="anularPagoResponse" type="ns0:anularPagoResponse" />
+  <xsd:element name="arqueoPagos" type="ns0:arqueoPagos" />
+  <xsd:element name="arqueoPagosResponse" type="ns0:arqueoPagosResponse" />
+  <xsd:element name="consultaInfoCliente" type="ns0:consultaInfoCliente" />
+  <xsd:element name="consultaInfoClienteResponse" type="ns0:consultaInfoClienteResponse" />
+  <xsd:element name="consultaPagos" type="ns0:consultaPagos" />
+  <xsd:element name="consultaPagosResponse" type="ns0:consultaPagosResponse" />
+  <xsd:element name="consultarSaldo" type="ns0:consultarSaldo" />
+  <xsd:element name="consultarSaldoResponse" type="ns0:consultarSaldoResponse" />
+  <xsd:element name="registrarPago" type="ns0:registrarPago" />
+  <xsd:element name="registrarPagoResponse" type="ns0:registrarPagoResponse" />
+</xsd:schema>

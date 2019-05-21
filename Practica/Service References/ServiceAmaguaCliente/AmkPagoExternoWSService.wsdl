@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="AmkPagoExternoWSService" targetNamespace="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="https://wlprbcli.amerika-e.com:12813/AmkWSPPagoExterno/AmkPagoExternoWSService?xsd=1" namespace="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/" />
+    </xsd:schema>
+  </types>
+  <message name="registrarPago">
+    <part name="parameters" element="tns:registrarPago" />
+  </message>
+  <message name="registrarPagoResponse">
+    <part name="parameters" element="tns:registrarPagoResponse" />
+  </message>
+  <message name="anularPago">
+    <part name="parameters" element="tns:anularPago" />
+  </message>
+  <message name="anularPagoResponse">
+    <part name="parameters" element="tns:anularPagoResponse" />
+  </message>
+  <message name="arqueoPagos">
+    <part name="parameters" element="tns:arqueoPagos" />
+  </message>
+  <message name="arqueoPagosResponse">
+    <part name="parameters" element="tns:arqueoPagosResponse" />
+  </message>
+  <message name="consultaPagos">
+    <part name="parameters" element="tns:consultaPagos" />
+  </message>
+  <message name="consultaPagosResponse">
+    <part name="parameters" element="tns:consultaPagosResponse" />
+  </message>
+  <message name="consultarSaldo">
+    <part name="parameters" element="tns:consultarSaldo" />
+  </message>
+  <message name="consultarSaldoResponse">
+    <part name="parameters" element="tns:consultarSaldoResponse" />
+  </message>
+  <message name="consultaInfoCliente">
+    <part name="parameters" element="tns:consultaInfoCliente" />
+  </message>
+  <message name="consultaInfoClienteResponse">
+    <part name="parameters" element="tns:consultaInfoClienteResponse" />
+  </message>
+  <portType name="AmkPagoExternoWS">
+    <operation name="registrarPago">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/registrarPagoRequest" message="tns:registrarPago" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/registrarPagoResponse" message="tns:registrarPagoResponse" />
+    </operation>
+    <operation name="anularPago">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/anularPagoRequest" message="tns:anularPago" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/anularPagoResponse" message="tns:anularPagoResponse" />
+    </operation>
+    <operation name="arqueoPagos">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/arqueoPagosRequest" message="tns:arqueoPagos" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/arqueoPagosResponse" message="tns:arqueoPagosResponse" />
+    </operation>
+    <operation name="consultaPagos">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultaPagosRequest" message="tns:consultaPagos" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultaPagosResponse" message="tns:consultaPagosResponse" />
+    </operation>
+    <operation name="consultarSaldo">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultarSaldoRequest" message="tns:consultarSaldo" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultarSaldoResponse" message="tns:consultarSaldoResponse" />
+    </operation>
+    <operation name="consultaInfoCliente">
+      <input wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultaInfoClienteRequest" message="tns:consultaInfoCliente" />
+      <output wsam:Action="http://ws.pagoExterno.recaudos.ws.servicios.amerika.com/AmkPagoExternoWS/consultaInfoClienteResponse" message="tns:consultaInfoClienteResponse" />
+    </operation>
+  </portType>
+  <binding name="AmkPagoExternoWSPortBinding" type="tns:AmkPagoExternoWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="registrarPago">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="anularPago">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="arqueoPagos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultaPagos">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultarSaldo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="consultaInfoCliente">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AmkPagoExternoWSService">
+    <port name="AmkPagoExternoWSPort" binding="tns:AmkPagoExternoWSPortBinding">
+      <soap:address location="https://wlprbcli.amerika-e.com:12813/AmkWSPPagoExterno/AmkPagoExternoWSService" />
+    </port>
+  </service>
+</definitions>

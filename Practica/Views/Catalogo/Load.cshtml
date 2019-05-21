@@ -1,0 +1,82 @@
+﻿@using Practica.Models
+@model List<Practica.Models.Catalogo>
+@{
+    ViewBag.Title = "Load";
+}
+<style>
+    #edit {
+        font-size: 18px;
+    }
+    #remove {
+        color: red;
+        font-size: 18px;
+    }
+
+    #cabecera {
+        background-color: lightblue;
+        color: white;
+    }
+
+    #new {
+        color: green;
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #print {
+        color: brown;
+        font-size: 18px;
+        margin: 5px;
+    }
+
+    #refresh {
+        font-size: 18px;
+        color: chocolate;
+        margin: 5px;
+    }
+  
+</style>
+<h2>Lista de Catalogos</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div>
+            @*<h3 class="panel-title">Catalogos</h3>*@
+            @Html.ActionLink(" ", "Index", "Catalogo", new { @class = "glyphicon glyphicon-plus-sign", id = "new" })
+            @Html.ActionLink(" ", "Index", "Catalogo", new { @class = "glyphicon glyphicon-print", id = "print" })
+            @Html.ActionLink(" ", "Index", "Catalogo", new { @class = "glyphicon glyphicon-refresh", id = "refresh" })
+        </div>
+    </div>
+    <div class="panel-body">
+
+        <table id="catalogo" class="table table-responsive table-striped table-bordered">
+            <thead id="cabecera">
+            <tr>
+                <th>*</th>
+                <th>ID</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@Html.CheckBox(" ", new{id ="check"})</td>
+                        <td>@Html.DisplayFor(m => i.id)</td>
+                        <td>@Html.DisplayFor(m => i.codigo)</td>
+                        <td>@Html.DisplayFor(m => i.nombre)</td>
+                        <td>@Html.DisplayFor(m => i.estado)</td>
+                        <td>
+                            @Html.ActionLink(" ", "Index", "Catalogo", new {@class = "glyphicon glyphicon-edit", id = "edit"})
+                            @Html.ActionLink(" ", "Index", "Catalogo", new {@class = "glyphicon glyphicon-remove ", id = "remove"})
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "NotFound404";
+}
+<style>
+    .error {
+        color: #3C974C;
+        text-align: center;
+    }
+
+    .irAlInicio {
+        color: white;
+        background: #3c974c;
+        border-radius: 10px;
+    }
+
+    .btn {
+        color: white;
+        background: #3c974c;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        border-radius: 20px;
+        position: relative;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+</style>
+
+<br /><br />
+<br />
+<div class="panel panel-success" id="contenedor">
+    <h2 class="error">Pagina No Encontrada</h2>
+
+    @Html.ActionLink("Ir al inicio", "Index", "Home", new
+    {
+        @class = "btn"
+    })
+</div>

@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ic_cobros_pagosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Catalogo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="codigo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="complemento" Type="varchar" MaxLength="255" />
+          <Property Name="estado" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="id_catalogo_padre" Type="int" />
+          <Property Name="es_padre" Type="bit" />
+          <Property Name="es_editable" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_empresa" Type="int" Nullable="false" />
+          <Property Name="id_rol" Type="int" Nullable="false" />
+          <Property Name="nombre_usuario" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre_completo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="tipo_identificacion" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="numero_identificacion" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ciudad" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="fecha_nacimiento" Type="datetime" Nullable="false" />
+          <Property Name="requiere_control_estacion_trabajo" Type="bit" Nullable="false" />
+          <Property Name="requiere_token" Type="bit" Nullable="false" />
+          <Property Name="token_habilitado" Type="bit" Nullable="false" />
+          <Property Name="estado_aplicacion" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="estado_directorio_activo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="id_institucion_financiera" Type="int" />
+          <Property Name="id_imagen" Type="int" />
+          <Property Name="codigo_imagen" Type="int" />
+          <Property Name="descripcion_imagen" Type="varchar" MaxLength="25" />
+          <Property Name="telefono_celular" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="tipo_usuario" Type="varchar" MaxLength="50" />
+          <Property Name="intentos_fallidos" Type="int" />
+          <Property Name="clave_reestablecida" Type="bit" />
+          <Property Name="agencia_origen" Type="int" />
+          <Property Name="email_responsable" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityContainer Name="ic_cobros_pagosModelStoreContainer">
+          <EntitySet Name="Catalogo" EntityType="Self.Catalogo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ic_cobros_pagosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Catalogo">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="codigo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="complemento" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_catalogo_padre" Type="Int32" />
+          <Property Name="es_padre" Type="Boolean" />
+          <Property Name="es_editable" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="ic_cobros_pagosEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Catalogo" EntityType="Self.Catalogo" />
+          <EntitySet Name="Usuario" EntityType="ic_cobros_pagosModel.Usuario" />
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_empresa" Type="Int32" Nullable="false" />
+          <Property Name="id_rol" Type="Int32" Nullable="false" />
+          <Property Name="nombre_usuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_completo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_identificacion" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="numero_identificacion" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nacimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="requiere_control_estacion_trabajo" Type="Boolean" Nullable="false" />
+          <Property Name="requiere_token" Type="Boolean" Nullable="false" />
+          <Property Name="token_habilitado" Type="Boolean" Nullable="false" />
+          <Property Name="estado_aplicacion" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="estado_directorio_activo" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="id_institucion_financiera" Type="Int32" />
+          <Property Name="id_imagen" Type="Int32" />
+          <Property Name="codigo_imagen" Type="Int32" />
+          <Property Name="descripcion_imagen" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="telefono_celular" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="tipo_usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="intentos_fallidos" Type="Int32" />
+          <Property Name="clave_reestablecida" Type="Boolean" />
+          <Property Name="agencia_origen" Type="Int32" />
+          <Property Name="email_responsable" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ic_cobros_pagosModelStoreContainer" CdmEntityContainer="ic_cobros_pagosEntities">
+          <EntitySetMapping Name="Catalogo">
+            <EntityTypeMapping TypeName="ic_cobros_pagosModel.Catalogo">
+              <MappingFragment StoreEntitySet="Catalogo">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="codigo" ColumnName="codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="complemento" ColumnName="complemento" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="id_catalogo_padre" ColumnName="id_catalogo_padre" />
+                <ScalarProperty Name="es_padre" ColumnName="es_padre" />
+                <ScalarProperty Name="es_editable" ColumnName="es_editable" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="ic_cobros_pagosModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="email_responsable" ColumnName="email_responsable" />
+                <ScalarProperty Name="agencia_origen" ColumnName="agencia_origen" />
+                <ScalarProperty Name="clave_reestablecida" ColumnName="clave_reestablecida" />
+                <ScalarProperty Name="intentos_fallidos" ColumnName="intentos_fallidos" />
+                <ScalarProperty Name="tipo_usuario" ColumnName="tipo_usuario" />
+                <ScalarProperty Name="telefono_celular" ColumnName="telefono_celular" />
+                <ScalarProperty Name="descripcion_imagen" ColumnName="descripcion_imagen" />
+                <ScalarProperty Name="codigo_imagen" ColumnName="codigo_imagen" />
+                <ScalarProperty Name="id_imagen" ColumnName="id_imagen" />
+                <ScalarProperty Name="id_institucion_financiera" ColumnName="id_institucion_financiera" />
+                <ScalarProperty Name="estado_directorio_activo" ColumnName="estado_directorio_activo" />
+                <ScalarProperty Name="estado_aplicacion" ColumnName="estado_aplicacion" />
+                <ScalarProperty Name="token_habilitado" ColumnName="token_habilitado" />
+                <ScalarProperty Name="requiere_token" ColumnName="requiere_token" />
+                <ScalarProperty Name="requiere_control_estacion_trabajo" ColumnName="requiere_control_estacion_trabajo" />
+                <ScalarProperty Name="fecha_nacimiento" ColumnName="fecha_nacimiento" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="numero_identificacion" ColumnName="numero_identificacion" />
+                <ScalarProperty Name="tipo_identificacion" ColumnName="tipo_identificacion" />
+                <ScalarProperty Name="nombre_completo" ColumnName="nombre_completo" />
+                <ScalarProperty Name="nombre_usuario" ColumnName="nombre_usuario" />
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="id_empresa" ColumnName="id_empresa" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

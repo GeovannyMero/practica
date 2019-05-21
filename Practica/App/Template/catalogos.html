@@ -1,0 +1,31 @@
+﻿<h2>Lista de Catalogos</h2>
+
+<div>
+    <a href="#/nuevo" class="btn btn-success">Nuevo</a>
+    <button ng-click="nuevo()">Nuevo</button>
+    <!--{{ catalogos | json }}-->
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Codigo</th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in catalogos">
+                <td>{{item.id}}</td>
+                <td>{{item.codigo}}</td>
+                <td>{{item.nombre}}</td>
+                <td>{{item.estado}}</td>
+                <td>
+                    <!--<button ng-click="getDetalles(item.id)" class="btn btn-success">Detalles</button>-->
+                    <a href="#/details/{{item.id}}">Detalles</a>
+                    <button ng-click="Existe(item.id)" class="btn btn-default">Existe</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

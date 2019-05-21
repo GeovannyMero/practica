@@ -1,0 +1,331 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- DevExtreme dependencies -->
+@*<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.1.0.min.js"></script>*@
+<script src="~/Scripts/DevExtreme/jquery.min.js"></script>
+
+<!-- DevExtreme themes -->
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.spa.css" />*@
+<link href="~/Scripts/DevExtreme/dx.spa.css" rel="stylesheet"/>
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.common.css" />*@
+<link href="~/Scripts/DevExtreme/dx.common.css" rel="stylesheet"/>
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.light.css" />*@
+<link href="~/Scripts/DevExtreme/dx.light.css" rel="stylesheet"/>
+@*   <link href="~/Scripts/DevExtreme/dx.carmine.css" rel="stylesheet" />*@
+
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.material.blue.light.css" />*@
+@*<link href="~/Scripts/DevExtreme/dx.material.blue.light.css" rel="stylesheet" />*@
+
+<!-- A DevExtreme library -->
+@*<script type="text/javascript" src="https://cdn3.devexpress.com/jslib/18.1.4/js/dx.all.js"></script>*@
+<script src="~/Scripts/DevExtreme/dx.all.js"></script>
+
+<br/>
+<br/>
+<br/>
+<h2>Lista de Catalogos</h2>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Catálogos</h3>
+
+    </div>
+    <div class="panel-body">
+        <div id="dataGrid"></div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function($) {
+        var d = new Date();
+        $(function() {
+            $("#dataGrid").dxDataGrid({
+                dataSource: new DevExpress.data.DataSource({
+                    //LOAD
+                    load: function() {
+                        var d = $.Deferred();
+                        return $.getJSON("/Sample/datos").done(function(result) {
+                            d.resolve(result);
+                            //DevExpress.ui.notify("Carga de Datos Exitosa", "success");
+                            //console.log(JSON.stringify(result));
+                        }).fail(function(error) {
+                            d.reject(Error);
+                            alert(error);
+                        });
+                    }, //END LOAD
+                    //INSERT
+                    insert: function(values) {
+                        alert("insert");
+                        console.log(values);
+                        return $.ajax({
+                            url: "/Sample/insert",
+                            method: "POST",
+                            data: values,
+                            success: function(data) {
+                                alert(data);
+                                console.log(data);
+                            },
+                            error: function(error) {
+                                alert(error);
+                            }
+
+                        });
+
+                    }, //END INSERT
+                    //UPDATE
+                    update: function(key, values) {
+                        var id = JSON.stringify(key["id"]);
+                        //alert("update");
+                        //var id = JSON.stringify(key["id"]);
+                        //// alert(id);
+                        //return $.ajax({
+                        //    url: "/Sample/update/" + id,
+                        //    method: "POST",
+                        //    data: values,
+                        //    success: function (data) {
+                        //        DevExpress.ui.notify("El registro se actualizo con éxito", "success");
+                        //        //alert(JSON.stringify(data));
+                        //    },
+                        //    error: function (error) {
+                        //        //alert(error + "ERROR");
+                        //        DevExpress.ui.notify("Error al actualizar", "error");
+                        //    }
+                        //});
+                        var d = $.Deferred();
+                        return $.post("/Sample/update/" + id, values).done(function(values) {
+                            alert(d.resolve(values));
+
+                        }).fail(function(err) {
+                            d.reject(err);
+                        });
+
+
+                    }, //END UPDATE
+                    //REMOVE
+                    remove: function(key) {
+                        //return $.ajax({
+                        //    url: "/Sample/remove/" + key,
+                        //    method: "DELETE",
+                        //    succes: function () {
+
+                        //    },
+                        //    error: function (error) {
+                        //        DevExpress.ui.notify("error" + error, "ERROR");
+                        //    }
+                        //});
+                        return $.post("/Sample/remove/" + key).done(function(result) {
+                            alert(result);
+                        }).fail(function(error) {
+                            alert(error);
+                        }).always(function() {
+                            alert("HOLA");
+                        });
+
+
+                    } //END REMOVE
+                }),
+                columnHidingEnabled: true,
+                columns: [
+                    {
+                        dataField: "id",
+                        caption: "ID",
+                        width: 50,
+                        editorOptions: {
+                            disabled: true
+                        }
+                    }, {
+                        dataField: "nombre",
+                        caption: "Nombre de catalogo",
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Nombre es obligatorio"
+                            }
+                        ],
+                        editorOptions: {
+                            showClearButton: true
+                        }
+                        //groupIndex: 1
+
+                    }, {
+                        dataField: "codigo",
+                        caption: "Código",
+                        groupIndex: 0
+                    },
+                    {
+                        dataField: "descripcion",
+                        caption: "Descripción",
+                        dataType: "memo"
+                    },
+                    {
+                        dataField: "estado",
+                        caption: "Estado",
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Estado es obligatorio"
+                            }
+                        ]
+
+                    }, {
+                        dataField: "es_editable",
+                        caption: "¿Es editable?",
+                        editorType: "dxCheckBox"
+                    }
+                ],
+                summary: {
+                    totalItems: [
+                        {
+                            column: "id",
+                            summaryType: "sum",
+                            width: 100
+                        }
+                    ]
+                },
+                // KeyExpr: "id",
+                filterRow: {
+                    visible: true
+                },
+                pager: {
+                    infoText: "Pagina {0} de {1}",
+                    showInfo: true,
+                    showNavigationButtons: true,
+
+                    visible: true,
+                    showPageSizeSelector: true,
+                    allowedPageSizes: [5, 10, 15, 20]
+                },
+                paging: {
+                    enabled: true,
+                    pageIndex: 0,
+                    pageSize: 5
+
+                },
+
+                //panel de busqueda
+                searchPanel: {
+                    visible: true
+                },
+                showColumnLines: false,
+                showRowLines: true,
+                rowAlternationEnabled: true,
+                showBorders: true,
+                footer: false,
+                groupPanel: {
+                    allowColumnDragging: false,
+                    emptyPanelText: "Arrastre una columna para poder agrupar por esa columna",
+                    visible: "auto"
+                },
+                grouping: {
+                    autoExpandAll: false
+                },
+                masterDetail: {
+                    autoExpandAll: false,
+                    enabled: true,
+                    template: "<h1>Fecha:" +
+                        d.getFullYear() +
+                        "/" +
+                        (d.getMonth() + 1) +
+                        "/" +
+                        d.getDate() +
+                        "-" +
+                        d.getTime() +
+                        "</h1>"
+                    //"<table class='table table-bordered table-hover'>" +
+                    //    "<thead>" +
+                    //        "<tr>" +
+                    //            "<th>Codigo</th>" +
+                    //        "</tr>" +
+                    //    "</thead>" +
+                    //"</table>"
+                },
+                selection: {
+                    mode: "multiple"
+                },
+                editing: {
+                    mode: "cell",
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    texts: {
+                        confirmDeleteMessage: "Desea eliminar este registro?",
+                        saveRowChanges: "Guardar",
+                        cancelRowChanges: "Cancelar",
+                        editRowChanges: "Editar"
+
+                    },
+                    allowAdding: true,
+                    useIcons: true,
+                    popup: {
+                        showTitle: true,
+                        title: "Editar Catalogo",
+                        width: 800,
+                        height: 450,
+                        position: {
+                            my: "center",
+                            at: "center",
+                            of: window
+                        }
+
+                    }
+                },
+                //loadPanel: {
+                //    enabled: false,
+                //    height: 90,
+                //    indicatorSrc: "",
+                //    showIndicator: false,
+                //    showPane: false,
+                //    text: "Loading...",
+                //    width: 200
+                //},
+
+                //toolbar
+                onToolbarPreparing: function(e) {
+                    var dataGrid = e.component;
+
+                    e.toolbarOptions.items.unshift({
+                            location: "before"
+                        },
+                        {
+                            location: "after",
+                            widget: "dxButton",
+                            options: {
+                                icon: "print",
+                                type: "",
+                                onClick: function() {
+                                    DevExpress.ui.dialog.confirm("Estás seguro Ud.?",
+                                        "Confirmar los cambios realizados.");
+                                }
+
+                            }
+                        },
+                        {
+                            location: "after",
+                            widget: "dxButton",
+                            options: {
+                                icon: "remove",
+                                type: "",
+                                onClick: function() {
+                                    DevExpress.ui.notify("Press Delete button", "error");
+                                }
+                            }
+                        },
+                        {
+                            location: "after",
+                            widget: "dxButton",
+                            options: {
+                                icon: "refresh",
+                                type: "",
+                                onClick: function() {
+                                    dataGrid.refresh();
+                                    DevExpress.ui.notify("Refresh button", "success");
+                                }
+                            }
+                        });
+                }
+
+
+            });
+        });
+    });
+</script>

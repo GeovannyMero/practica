@@ -1,0 +1,109 @@
+﻿@model List<Practica.Models.SaldosRespuesta>
+
+
+@{
+    ViewBag.Title = "Amagua";
+}
+
+
+<h1 style="color: red;">@ViewBag.mensaje</h1>
+
+<h2>Saldos</h2>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Consulta de Saldos</h3>
+    </div>
+    <div class="panel-body">
+        @* Convenio *@
+        @{
+            var convenio = Model.FirstOrDefault(m => m.cuotasConvenioField != null);
+            var facturas = Model.FirstOrDefault(m => m.facturasField != null);
+        }
+        @if (@convenio != null)
+        {
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3>Cuotas Convenio-@convenio</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table-bordered table-responsive">
+                        <thead>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Total</th>
+                                <th>intetres</th>
+                                <th>Valor Aplicar</th>
+                                <th>Valor Aplicar interes</th>
+                                <th>Saldo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m=> item.periodoField)</td>
+                                        <td>@Html.DisplayFor(m=>item.totalField)</td>
+                                        <td>@Html.DisplayFor(m=>item.interesField)</td>
+                                        <td>@Html.DisplayFor(m => item.valorAplicadoField)</td>
+                                        <td>@Html.DisplayFor(m => item.valorAplicadoInteresField)</td>
+                                        <td>@Html.DisplayFor(m => item.saldoField)</td>
+                                    </tr>
+                                }*@
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+        @* Facturas *@
+        @if (@facturas != null)
+        {
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Facturas</h4>
+                </div>
+                <div class="panel-body">
+                    <table class="table-bordered" style="width: 100%">
+                        <thead>
+                            <tr>
+                                <th>Periodo</th>
+                                <th>Documento</th>
+                                <th>Vencimiento</th>
+                                <th>Total</th>
+                                <th>I.V.A</th>
+                                <th>Pagado</th>
+                                <th>Base</th>
+                                <th>Base No</th>
+                                <th>Saldo</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var itemFactura in facturas.facturasField)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => itemFactura.periodo)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.documento)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.fechaVencimiento)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.total)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.iva)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.pagado)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.baseGravable)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.baseNoGravable)</td>
+                                    <td>@Html.DisplayFor(m => itemFactura.saldo)</td>
+                                    <td>@Html.ActionLink("Pagar", "Pago", "Amagua")</td>
+                                    <td>@Html.ActionLink("Anular", "Anular", "Amagua")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+
+
+
+    </div>
+</div>

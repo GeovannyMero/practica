@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+<div ng-app="myApp">
+    <div ng-controller="myCtrl" ng-init="getCatalogos()">
+        <table cellpadding="12" class="   table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in catalogos">
+                    <td><%item.id%></td>
+                    <td>{{item.codigo}}</td>
+                    <td>{{item.nombre}}</td>
+                    <td>{{item.estado}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/Scripts/angular/angular.js"></script>
+<script src="~/Scripts/angular/catalogo.js"></script>

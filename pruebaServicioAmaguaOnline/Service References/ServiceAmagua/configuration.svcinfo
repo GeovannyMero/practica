@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configurationSnapshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="urn:schemas-microsoft-com:xml-wcfconfigurationsnapshot">
+  <behaviors />
+  <bindings>
+    <binding digest="System.ServiceModel.Configuration.BasicHttpBindingElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089:&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data name=&quot;BasicHttpBinding_IConciliacionAmagua&quot; /&gt;" bindingType="basicHttpBinding" name="BasicHttpBinding_IConciliacionAmagua" />
+  </bindings>
+  <endpoints>
+    <endpoint normalizedDigest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://gyebmccpdes07.bancomachala.corp:8086/ic_CoreServicios_Conciliaciones_ISL.ConciliacionAmagua.svc&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;BasicHttpBinding_IConciliacionAmagua&quot; contract=&quot;ServiceAmagua.IConciliacionAmagua&quot; name=&quot;BasicHttpBinding_IConciliacionAmagua&quot; /&gt;" digest="&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-16&quot;?&gt;&lt;Data address=&quot;http://gyebmccpdes07.bancomachala.corp:8086/ic_CoreServicios_Conciliaciones_ISL.ConciliacionAmagua.svc&quot; binding=&quot;basicHttpBinding&quot; bindingConfiguration=&quot;BasicHttpBinding_IConciliacionAmagua&quot; contract=&quot;ServiceAmagua.IConciliacionAmagua&quot; name=&quot;BasicHttpBinding_IConciliacionAmagua&quot; /&gt;" contractName="ServiceAmagua.IConciliacionAmagua" name="BasicHttpBinding_IConciliacionAmagua" />
+  </endpoints>
+</configurationSnapshot>

@@ -1,0 +1,204 @@
+﻿<!-- DevExtreme dependencies -->
+@*<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.1.0.min.js"></script>*@
+<script src="~/Scripts/DevExtreme/jquery.min.js"></script>
+
+<!-- DevExtreme themes -->
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.spa.css" />*@
+<link href="~/Scripts/DevExtreme/dx.spa.css" rel="stylesheet" />
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.common.css" />*@
+<link href="~/Scripts/DevExtreme/dx.common.css" rel="stylesheet" />
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.light.css" />*@
+<link href="~/Scripts/DevExtreme/dx.light.css" rel="stylesheet" />
+@*<link href="~/Scripts/DevExtreme/dx.carmine.css" rel="stylesheet" />*@
+
+@*<link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.1.4/css/dx.material.blue.light.css" />*@
+@*<link href="~/Scripts/DevExtreme/dx.material.blue.light.css" rel="stylesheet" />*@
+
+<!-- A DevExtreme library -->
+@*<script type="text/javascript" src="https://cdn3.devexpress.com/jslib/18.1.4/js/dx.all.js"></script>*@
+<script src="~/Scripts/DevExtreme/dx.all.js"></script>
+@{
+    ViewBag.Title = "Index";
+}
+
+<br />
+<br /><br />
+<br /><br />
+<h2>Index</h2>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+
+    </div>
+    <div class="panel-body">
+        <div id="notas"></div>
+    </div>
+</div>
+<script>
+    $(document).ready(function ($) {
+        $(function () {
+            $('#notas').dxDataGrid({
+                dataSource: new DevExpress.data.DataSource({
+                    insert: function (values) {
+                    },
+                    update: function (key, values) {
+                        console.log(JSON.stringify(key["id"]));
+                    }
+
+                }),
+                columns: [
+                    {
+                        dataField: "id",
+                        caption: "Id",
+                        width: 100
+                    },
+                    {
+                        dataField: "nombreCompleto",
+                        caption: "Nombre Completo",
+                        width: 500,
+                        dataType: "text",
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Nombre es Obligatorio"
+                            }
+                        ],
+                        editorOptions: {
+                            showClearButton: true
+                        }
+                    },
+                    {
+                        dataField: "nota1",
+                        caption: "Nota 1",
+                        dataType: "number",
+                        width: 80,
+                        editorOptions: {
+                            showClearButton: true,
+                            maskRules: { "X": /[0-9]/ }
+                        },
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Nota es Obligatoria",
+                                max: 2
+                            }
+                        ]
+                    },
+                    {
+                        dataField: "nota2",
+                        caption: "Nota 2",
+                        dataType: "number",
+                        width: 80,
+                        editorOptions: {
+                            showClearButton: true,
+                            maskRules: { "X": /[0-9]/ }
+                        },
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Nota es Obligatoria"
+                            }
+                        ]
+                    },
+                    {
+                        dataField: "nota3",
+                        caption: "Nota 3",
+                        dataType: "number",
+                        width: 80,
+                        editorOptions: {
+                            showClearButton: true,
+                            maskRules: { "X": /[0-9]/ }
+                        },
+                        validationRules: [
+                            {
+                                type: "required",
+                                message: "Nota es Obligatoria"
+                            }
+                        ]
+                    },
+                    {
+                        dataField: "total",
+                        caption: "Total",
+                        dataType: "number",
+                        width: 80,
+                        calculateCellValue: function (data) {
+                            console.log(data);
+                            return [data.nota1 + data.nota2 + data.nota3];
+                        }
+                    },
+                    {
+                        dataField: "promedio",
+                        caption: "Promedio",
+                        dataType: "number",
+                        calculateCellValue: function (data) {
+                            console.log(data);
+                            return [(data.nota1 + data.nota2 + data.nota3) / 3.00];
+                        }
+                    }
+                ],
+                summary: {
+                    totalItems: [
+                        {
+                            column: "Total",
+                            summaryType: "sum"
+                        },
+                        {
+                            column: "Promedio",
+                            summaryType: "sum"
+
+                        },
+                        {
+                            column: "Id",
+                            summaryType: "count"
+
+                        }
+                    ]
+                },
+                editing: {
+                    mode: "form",
+                    allowAdding: true,
+                    allowUpdating: true,
+                    allowDeleting: true,
+                    form: {
+                        columns:1,
+                        items: [
+                            {
+                                itemType: "group",
+                                caption: "Datos",
+                                items: [
+                                    { dataField: "nombreCompleto" }
+                                ]
+                            },
+                            {
+                                itemType: "group",
+                                caption: 'Calificaciones',
+                                items: [
+                                    {
+                                        dataField: "nota1",
+                                        width: 80
+                                    },
+                                    {
+                                        dataField: "nota2"
+                                    },
+                                    {
+                                        dataField: "nota3"
+                                    }
+                                ]
+                            },
+                            {
+                                itemType: "group",
+                                caption: "Total",
+                                items: [
+                                    {
+                                        dataField: "total"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+
+            });
+        });
+    });
+</script>

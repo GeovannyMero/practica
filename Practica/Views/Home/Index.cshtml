@@ -1,0 +1,37 @@
+﻿@using Practica.Models
+@model List<Practica.Models.inmuebleRespuestas>
+@{
+    ViewBag.Title = "ADO.NET Integration - Home";
+}
+<script src="~/Scripts/angular/angular.js"></script>
+<div class="jumbotron">
+    <h1>Welcome</h1>
+    <p class="lead">Login from "@User.Identity.Name" Account.</p>
+
+    <div class="panel panel-info" ng-app="myApp">
+        <div class="panel-body">
+
+            <h2>mensaje: @ViewBag.mensaje</h2>
+            <h2>Codigo: @ViewBag.codigo</h2>
+            <br />
+            <h4 style="color: red">@ViewBag.Error</h4>
+
+            <table class="table-bordered">
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(m => item.codClienteField)</td>
+                        <td>@Html.DisplayFor(m => item.correoField)</td>
+                        <td>@Html.DisplayFor(m => item.nombreClienteField)</td>
+
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+
+        </div>
+     
+    </div>
+</div>
